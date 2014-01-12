@@ -15,7 +15,7 @@ import java.util.List;
 public class CuentaBancaria {
 
     private int idCuentaBancaria;
-    private List<MovimientoBancario> movimientosBancario = new ArrayList<MovimientoBancario>();
+    private List<MovimientoBancario> movimientosBancario = new ArrayList<>();
     private SucursalBancaria sucursalBancaria;
     private String numeroCuenta;
     private String dc;

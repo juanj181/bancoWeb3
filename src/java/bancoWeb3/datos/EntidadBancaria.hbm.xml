@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
  <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="bancoWeb3.negocio.EntidadBancaria" table="EntidadBancaria" >
+    <class name="bancoWeb3.negocio.EntidadBancaria" table="entidadbancaria" >
         <id column="idEntidadBancaria" name="idEntidadBancaria" type="int"/>
         <property name="codigoEntidadBancaria" />
         <property name="nombre" />
