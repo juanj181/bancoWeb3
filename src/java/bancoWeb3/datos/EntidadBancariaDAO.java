@@ -13,5 +13,6 @@ import java.util.List;
  */
 public interface EntidadBancariaDAO extends GenericDAO<EntidadBancaria,Integer>{
     
+  public List<EntidadBancaria> findByCodigo(String codigo);  
   public List<EntidadBancaria> findByNombre (String nombre);  
 }
