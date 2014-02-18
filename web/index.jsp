@@ -1,8 +1,24 @@
-<%-- 
-    Document   : index
-    Created on : 27-nov-2013, 0:03:26
-    Author     : Jj
---%>
+<%@page import="bancoWeb3.datos.HibernateUtil"%>
+<%@page import="bancoWeb3.datos.EntidadBancariaDAOImplHibernate"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="bancoWeb3.negocio.TipoEntidadBancaria"%>
+<%@page import="bancoWeb3.negocio.EntidadBancaria"%>
+<%@page import="bancoWeb3.datos.EntidadBancariaDAO"%>
+<%
+
+    EntidadBancariaDAO entidadBancariaDAO = new EntidadBancariaDAOImplHibernate();
+
+    //Mostrar muchas entidades bancarias    
+
+    List<EntidadBancaria> entidadesBancarias;
+    entidadesBancarias = entidadBancariaDAO.findAll();
+
+    String nombreBuscado = request.getParameter("nombre");
+    List<EntidadBancaria> entidadBancariaBuscadaGet;
+    entidadBancariaBuscadaGet = entidadBancariaDAO.findByNombre(nombreBuscado);
+
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,6 +28,22 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>BancoWeb</h1>
+
+        <div>
+            <table>
+                <% for (EntidadBancaria entidadBancaria : entidadBancariaBuscadaGet) {
+                %><tr>  
+                    <td><%= entidadBancaria.getIdEntidadBancaria()%></td>
+                    <td><%= entidadBancaria.getCodigoEntidadBancaria()%></td>
+                    <td><%= entidadBancaria.getNombre()%></td>
+                    <td><%= entidadBancaria.getCif()%></td>    
+                    <td><%= entidadBancaria.getTipoEntidadBancaria()%></td>
+                    <td><a href="delete.jsp?idEntidadBancaria=<%= entidadBancaria.getIdEntidadBancaria()%>" class="btn" >Borrar</a></td>
+                    <td><a href="newForUpdate.jsp?idEntidadBancaria=<%= entidadBancaria.getIdEntidadBancaria()%>" class="btn" >Editar</a></td>
+                </tr>
+                <%}%>
+            </table>
+        </div>
     </body>
 </html>

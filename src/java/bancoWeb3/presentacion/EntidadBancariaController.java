@@ -10,6 +10,7 @@ import bancoWeb3.datos.EntidadBancariaDAO;
 import bancoWeb3.negocio.EntidadBancaria;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,32 @@ public class EntidadBancariaController {
             }
         }
         
+    }
+        //Leer todos las entidades
+    @RequestMapping(value = {"/EntidadBancaria"}, method = RequestMethod.GET)
+    public void findAll(HttpServletRequest request, HttpServletResponse response) {
+
+        try {
+
+            List<EntidadBancaria> entidadesBancarias = entidadBancariaDAO.findAll();
+
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.setContentType("application/json; chaset=UTF-8");
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = objectMapper.writeValueAsString(entidadesBancarias);
+            response.getWriter().println(json);
+
+
+        } catch (Exception ex) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.setContentType("text/plain; charset=UTF-8;");
+            try {
+
+                ex.printStackTrace(response.getWriter());
+            } catch (IOException ex1) {
+            }
+        }
     }
     
     
